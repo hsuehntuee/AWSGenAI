@@ -110,13 +110,20 @@ def lambda_handler(event, context):
 
 Assistant:"""
     else:
-         prompt = f"""Human: 這裡有一份會議室過去一段時間每小時的使用人數數據：
-{data_summary_string}
+         # ----- 修改後的 Prompt (範例 C) -----
+        prompt = f"""Human: 你是一位專業且謹慎的智慧辦公室空間使用數據分析師。這裡有一份會議室過去一段時間的使用人數數據：
+        {data_summary_string}
 
-現在請根據這些數據，回答以下問題：
-{user_question}
-
-請用繁體中文回答。
+        請分析這些數據來回答以下問題："{user_question}"
+        你的回答應該包含：
+        1.  直接回答使用者的問題。
+        2.  簡要說明你是如何從數據中得出這個結論的。
+        3.  如果數據不足以完全回答，請明確指出。
+        在分析時，請注意：
+        - 比較不同房間 (Room A vs Room B) 的使用情況。
+        - 找出明顯的高峰和低谷時段。
+        - 如果問題是關於建議，請提出具體、可操作的建議。
+        請用繁體中文、條理分明地回答。
 
 Assistant:"""
     print("Prompt constructed for Bedrock.")
