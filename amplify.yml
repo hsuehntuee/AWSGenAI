@@ -1,6 +1,6 @@
 version: 1
 applications:
-  - appRoot: frontend
+  - appRoot: hackathon-frontend
     backend:
       phases:
         preBuild:
@@ -15,12 +15,12 @@ applications:
         preBuild:
           commands:
             - '# Install dependencies'
-            - cd frontend && npm install
+            - cd hackathon-frontend && npm install
         build:
           commands:
-            - cd frontend && npm run build
+            - cd hackathon-frontend && npm run build
       artifacts:
-        baseDirectory: frontend/build
+        baseDirectory: hackathon-frontend/build
         files:
           - '**/*'
       cache:
