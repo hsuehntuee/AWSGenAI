@@ -14,8 +14,8 @@ ts_query_client = boto3.client('timestream-query', region_name=REGION)
 
 # --- 設定 ---
 DATABASE_NAME = "PeopleCountDB"
-TABLE_NAME = "RoomData1" # 確認使用 RoomData1
-TARGET_S3_BUCKET = '<YOUR_REPORT_BUCKET_NAME>' # 請確認 S3 桶名稱
+TABLE_NAME = "RoomData2" # 確認使用 RoomData1
+TARGET_S3_BUCKET = 'aws-weillington' # 請確認 S3 桶名稱
 
 # --- 新的數據處理與格式化函數 ---
 # --- 新的數據處理與格式化函數 (CORRECTED Python Syntax) ---
@@ -180,13 +180,13 @@ def lambda_handler(event, context):
 Assistant:"""
     else:
          # 提供更豐富的上下文給 AI
-         prompt = f"""Human: 這裡有一份會議室在過去一段時間內，不同時間點（對應不同圖片）偵測到的詳細數據記錄。每個記錄點包含時間、圖片/房間名，以及可能的度量（人數、AI描述等）：
+         prompt = f"""Human: 這裡有一份數間會議室在過去一段時間內，不同時間點偵測到的詳細數據記錄。每個記錄點包含可能的度量（時間、人數、會議室狀態描述等）：
 {data_summary_string}
 
 請仔細分析以上所有提供的數據記錄，然後根據這些數據回答以下問題：
 {user_question}
 
-在回答時，請綜合考慮人數(PeopleCount)和其他可能的描述性資訊(StackingDescription)。請用繁體中文回答。
+在回答時，請綜合考慮人數(PeopleCount)和其他可能的描述性資訊(StackingDescription)。回答不需要覆述已經提過的觀察結果，並請用繁體中文回答。
 
 Assistant:"""
     print("Prompt constructed for Bedrock.")
