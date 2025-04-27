@@ -1,17 +1,29 @@
 version: 1
-frontend:
-    appRoot: hackathon-frontend  # 告訴 Amplify 你的專案在 hackathon-frontend 資料夾中
-    phases:
+applications:
+  - appRoot: frontend
+    backend:
+      phases:
         preBuild:
-            commands:
-                - 'npm install'  # 安裝依賴
+          commands:
+            - '# Install dependencies and build'
+            - npm install
         build:
-            commands:
-                - 'npm run build'  # 執行構建命令
-    artifacts:
-        baseDirectory: hackathon-frontend/build  # 輸出目錄
+          commands:
+            - npm run build
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - '# Install dependencies'
+            - cd frontend && npm install
+        build:
+          commands:
+            - cd frontend && npm run build
+      artifacts:
+        baseDirectory: frontend/build
         files:
-            - '*/'  # 包含所有建構後的文件
-    cache:
+          - '**/*'
+      cache:
         paths:
-            - hackathon-frontend/node_modules/**/*  # 緩存 node_modules 以加速後續構建
+          - node_modules/**/*
+
