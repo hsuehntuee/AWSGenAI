@@ -1,0 +1,19 @@
+version: 1
+applications:
+  - appRoot: hackathon-frontend
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - "# Install dependencies"
+            - npm install
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: build
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - node_modules/**/*
