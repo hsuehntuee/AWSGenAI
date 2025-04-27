@@ -5,11 +5,7 @@ applications:
       phases:
         preBuild:
           commands:
-<<<<<<< HEAD
             - '# Install dependencies'
-=======
-            - "# Install dependencies"
->>>>>>> 08a9c26e19186470fa3adb4e81a90d35f128e5d2
             - npm install
         build:
           commands:
@@ -17,11 +13,7 @@ applications:
       artifacts:
         baseDirectory: build
         files:
-<<<<<<< HEAD
           - '**/*'
-=======
-          - "**/*"
->>>>>>> 08a9c26e19186470fa3adb4e81a90d35f128e5d2
       cache:
         paths:
           - node_modules/**/*
